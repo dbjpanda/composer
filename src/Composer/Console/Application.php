@@ -204,7 +204,7 @@ class Application extends BaseApplication
             }
 
             if (!Platform::isWindows() && function_exists('exec') && !getenv('COMPOSER_ALLOW_SUPERUSER')) {
-                if (function_exists('posix_getuid') && posix_getuid() === 0) {
+                if (function_exists('posix_geteuid()') && posix_geteuid() === 0) {
                     if ($commandName !== 'self-update' && $commandName !== 'selfupdate') {
                         $io->writeError('<warning>Do not run Composer as root/super user! See https://getcomposer.org/root for details</warning>');
                     }
